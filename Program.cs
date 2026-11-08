@@ -116,7 +116,7 @@ IWebElement Locate(string kind, object cfg)
         for (int f = -1; f < contexts; f++)
         {
             if (!SwitchTo(f)) continue;
-            var json = (string)Js(locatorJs, kind, cfg)!;
+            var json = (string)Js(locatorJs, kind, JsonSerializer.Serialize(cfg))!;
             using var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
             bool found = root.GetProperty("found").GetBoolean();

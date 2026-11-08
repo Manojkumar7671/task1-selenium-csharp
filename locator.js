@@ -4,7 +4,7 @@
 // name/id tokens, option values) - never by a fixed id/xpath/css.
 // Marks the winner with data-ax-pick="<kind>" and returns a JSON string.
 const kind = arguments[0];
-const cfg = arguments[1] || {};
+const cfg = typeof arguments[1] === 'string' ? JSON.parse(arguments[1]) : (arguments[1] || {});
 const include = cfg.include || [];
 const exclude = cfg.exclude || [];
 const target = cfg.target || '';
