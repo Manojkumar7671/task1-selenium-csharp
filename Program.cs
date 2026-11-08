@@ -95,7 +95,7 @@ string PickState()
     else
     {   // no value requested: first real option (skip placeholders like "Select State")
         chosen = sel.Options.FirstOrDefault(o => !string.IsNullOrWhiteSpace(o.Text) &&
-                 !Norm(o.Text).StartsWith("select") && !Norm(o.Text).StartsWith("choose") && !Norm(o.Text).StartsWith("please"))
+                 !string.IsNullOrWhiteSpace(o.GetAttribute("value")) && !Norm(o.Text).StartsWith("select") && !Norm(o.Text).StartsWith("choose") && !Norm(o.Text).StartsWith("please"))
               ?? throw new Exception("dropdown has no selectable options");
     }
     sel.SelectByText(chosen.Text);
